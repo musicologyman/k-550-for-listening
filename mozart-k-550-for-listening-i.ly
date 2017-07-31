@@ -4,7 +4,7 @@
   tagline = ##f
 }
 
-#(set! paper-alist (cons '("my size" . (cons (* 8.5 in) (* 1.7 in))) paper-alist))
+#(set! paper-alist (cons '("my size" . (cons (* 8.5 in) (* 2.0 in))) paper-alist))
 
 \paper {
   #(set-paper-size "my size" )
@@ -25,17 +25,24 @@
   ragged-bottom = ##f
 }
 
-main = \relative c' {
+main = \relative c'' {
  \clef treble
  \key g \minor
  \time 2/2
- \stemDown
-   g8 \p ^\markup \bold "Molto Allegro" _\markup \italic "violas" g es' es
-   g, [g] \stemNeutral es'' ^\markup \column {
+
+ \tempo "Molto Allegro"
+   << {
+     r2 r4 es8 ^\markup \column {
      \line \huge \bold { P\super{1}}
-     \line \italic { violins } } (d) |
-   d4 es8 (d) d4 es8 (d) |
-   d4 (bes') r bes8 (a) |
+     \line \italic { violins } } (d)
+      d4 es8 (d) d4 es8 (d) |
+     }
+     \new Staff { \key g \minor  g,,8 \p ^\markup \italic "violas" g es' es g, g es' es  |
+                  \once \override TextScript #'Y-offset = #-1.0
+                  \stopStaff s1 ^\markup \italic "etc." } >>
+
+
+   d'4 (bes') r bes8 (a) |
    g4 g8 (f) es4 es8 (d) |
    c4 c r d8 (c) |
 
@@ -50,17 +57,27 @@ main = \relative c' {
    g (bes a8 g f es) |
 
    %measure 14
-   << { s4 fis ^\p ^\markup \italic "woodwinds" (g a bes c8 bes a4 g fis4 s ) } \\
-      { d1 (cis1 d2) } >>
-
-     r4 d,8 \f d |
+   << \new Staff \with {
+       \remove Time_signature_engraver
+        alignAboveContext = #"main" }
+      { \key g \minor r4 fis \p ^\markup \italic "woodwinds" (g a
+        bes c8 bes a4 g fis) r cis'2 \f
+        (d4) r cis2
+        (d4) r cis2
+        (d4) cis-! d-! cis-! |
+        d2 \clef bass c,, \p ^\markup \italic "bassoon"
+      (bes2 a) }
+      { d'1 (cis1 d2)
+        r4 d,8 \f d |
 
    %measure 17
    d2 r4 d8 d |
    d2 r4 d8 d |
    d4 d8 d d4 d8 d |
    d2 r4 es'8 \p (d) |
-   d4 es8 (d) d4 es8 (d) |
+   d4 es8 (d) d4 es8 (d) | } >>
+
+
 
    %measure 22
    d4 (bes') r bes8 (a) |
