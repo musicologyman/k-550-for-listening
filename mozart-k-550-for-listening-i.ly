@@ -26,86 +26,101 @@
 }
 
 main = \relative c'' {
- \clef treble
- \key g \minor
- \time 2/2
+  \clef treble
+  \key g \minor
+  \time 2/2
 
- \tempo "Molto Allegro"
-   << {
-     r2 r4 es8 ^\markup \column {
-     \line \huge \bold { P\super{1}}
-     \line \italic { violins } } (d)
+  \tempo "Molto Allegro"
+  <<
+    {
+      r2 r4 es8 ^\markup \column {
+        \line \huge \bold { P\super{1}}
+        \line \italic { violins }
+      } (d)
       d4 es8 (d) d4 es8 (d) |
-     }
-     \new Staff { \key g \minor  g,,8 \p ^\markup \italic "violas" g es' es g, g es' es  |
-                  \once \override TextScript #'Y-offset = #-1.0
-                  \stopStaff s1 ^\markup \italic "etc." } >>
+    }
+    \new Staff {
+      \key g \minor  g,,8 \p ^\markup \italic "violas" g es' es g, g es' es  |
+      \once \override TextScript #'Y-offset = #-1.0
+      \stopStaff s1 ^\markup \italic "etc."
+    }
+  >>
 
 
-   d'4 (bes') r bes8 (a) |
-   g4 g8 (f) es4 es8 (d) |
-   c4 c r d8 (c) |
+  d'4 (bes') r bes8 (a) |
+  g4 g8 (f) es4 es8 (d) |
+  c4 c r d8 (c) |
 
-   %measure 6
-   c4 d8 (c) c4 d8 (c) |
-   c4 (a') r a8 (g) |
-   fis4 fis8 (es) d4 d8 (c) |
-   bes4 bes r bes'8 (a) |
-   a4 (c fis, a) |
-   g (d) r bes'8 (a) |
-   a4 (c fis, a) |
-   g (bes a8 g f es) |
+  %measure 6
+  c4 d8 (c) c4 d8 (c) |
+  c4 (a') r a8 (g) |
+  fis4 fis8 (es) d4 d8 (c) |
+  bes4 bes r bes'8 (a) |
+  a4 (c fis, a) |
+  g (d) r bes'8 (a) |
+  a4 (c fis, a) |
+  g (bes a8 g f es) |
 
-   %measure 14
-   << \new Staff \with {
-       \remove Time_signature_engraver
-        alignAboveContext = #"main" }
-      { \key g \minor r4 fis \p ^\markup \italic "woodwinds" (g a
-        bes c8 bes a4 g fis) r cis'2 \f
-        (d4) r cis2
-        (d4) r cis2
-        (d4) cis-! d-! cis-! |
-        d2 \clef bass c,, \p ^\markup \italic "bassoon"
-      (bes2 a) }
-      { d'1 (cis1 d2)
-        r4 d,8 \f d |
+  %measure 14
+  <<
+    \new Staff \with {
+      \remove Time_signature_engraver
+      alignAboveContext = #"main"
+    }
+    {
+      \key g \minor r4 fis \p ^\markup \italic "woodwinds" (g a
+      bes c8 bes a4 g fis) r cis'2 \f
+      (d4) r cis2
+      (d4) r cis2
+      (d4) cis-! d-! cis-! |
+      d2 \clef bass c,, \p ^\markup \italic "bassoon"
+      (bes2 a)
+    }
+    {
+      d'1 (cis1 d2)
+      r4 d,8 \f d |
 
-   %measure 17
-   d2 r4 d8 d |
-   d2 r4 d8 d |
-   d4 d8 d d4 d8 d |
-   d2 r4 es'8 \p (d) |
-   d4 es8 (d) d4 es8 (d) | } >>
+      %measure 17
+      d2 r4 d8 d |
+      d2 r4 d8 d |
+      d4 d8 d d4 d8 d |
+      d2 r4 es'8 \p (d) |
+      d4 es8 (d) d4 es8 (d) |
+    }
+  >>
 
 
 
-   %measure 22
-   d4 (bes') r bes8 (a) |
-   g4 g8 (f) es4 es8 (d) |
-   c4 c r f8 (es) |
-   es4 f8 (es) es4 f8 (es) |
-   es4 (c') r c8 (bes) |
+  %measure 22
+  d4 (bes') r bes8 (a) |
+  g4 g8 (f) es4 es8 (d) |
+  c4 c r f8 (es) |
+  es4 f8 (es) es4 f8 (es) |
+  es4 (c') r c8 (bes) |
 
-   %measure 27
-   a4 a8 (g) f4 f8 (es) |
-   bes'1 \f ^\markup \column { \line \huge { \bold { P \super 2 } } \line { \italic "[full orchestra plays here]" } }|
-   f2. r8 f |
-   es4-! g-! bes-! r |
-   d,-! f-! bes-! r8 d, |
+  %measure 27
+  a4 a8 (g) f4 f8 (es) |
+  bes'1 \f ^\markup \column { \line \huge { \bold { P \super 2 } } \line { \italic "[full orchestra plays here]" } }|
+  f2. r8 f |
+  es4-! g-! bes-! r |
+  d,-! f-! bes-! r8 d, |
 
-   %measure 32
-   c4-! es-! g-! c,-! |
-   bes-! d-! f-! r8 f |
-   \repeat unfold 3 { e8 f g a bes c des f, }
+  %measure 32
+  c4-! es-! g-! c,-! |
+  bes-! d-! f-! r8 f |
+  \repeat unfold 3 { e8 f g a bes c des f, }
 
-   %measure 37
-   e f g a bes c des e, |
-   f2 c'4-! a-! |
-   des2 e,4-! g-! |
-   f2 c'8 a c a |
-   des bes des bes e, g e g |
-   f4 r f, r |
+  %measure 37
+  e f g a bes c des e, |
+  f2 c'4-! a-! |
+  des2 e,4-! g-! |
+  f2 c'8 a c a |
+  des bes des bes e, g e g |
+  f4 r f, r |
 
+  %measure 43
+  \once \override MultiMeasureRestNumber #'text = #"1"
+  R1 * 1
 }
 
 \score {
