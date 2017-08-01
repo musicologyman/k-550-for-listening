@@ -59,7 +59,8 @@ main = \relative c'' {
   a4 (c fis, a) |
   g (d) r bes'8 (a) |
   a4 (c fis, a) |
-  g (bes a8 g f es) |
+  g4 (bes a8 g f es) |
+
 
   %measure 14
   <<
@@ -68,8 +69,11 @@ main = \relative c'' {
       alignAboveContext = #"main"
     }
     {
-      \key g \minor r4 fis \p ^\markup \italic "woodwinds" (g a
-      bes c8 bes a4 g fis) r cis'2 \f
+      \key g \minor
+      \clef "treble"
+
+      r4 fis \p ^\markup \italic "woodwinds" (g a
+        bes c8 bes a4 g fis) r cis'2 \f
       (d4) r cis2
       (d4) r cis2
       (d4) cis-! d-! cis-! |
@@ -77,6 +81,7 @@ main = \relative c'' {
       (bes2 a)
     }
     {
+
       d'1 (cis1 d2)
       r4 d,8 \f d |
 
@@ -116,11 +121,48 @@ main = \relative c'' {
   des2 e,4-! g-! |
   f2 c'8 a c a |
   des bes des bes e, g e g |
-  f4 r f, r |
+  f4 r f, r \break |
 
   %measure 43
   \once \override MultiMeasureRestNumber #'text = #"1"
   R1 * 1
+
+  <<
+    \new Staff \with {
+      \remove Time_signature_engraver
+      alignAboveContext = #"main"
+    }
+    {
+
+      \key g \minor
+      R1
+      es'2. \p ^\markup \italic "woodwinds" (f16 es d c
+      bes4) s s2 |
+      R1 * 4
+
+      bes8 ^\markup \italic "woodwinds" (a c bes d c es d) |
+      f2. (e4
+      es) r r2 |
+      r4 bes-. bes (c) |
+      d4. (es8) c4-. r |
+    }
+    {
+      f2. \p ^\markup \italic "strings" (e4
+      es!4) r4 r2 |
+      r4 bes-. bes (c) |
+      d4. (es8) c4-. r |
+      g'2. (fis4 |
+      f! e es d) \noBreak |
+      c (es2 a,4) |
+      bes4 r r2 |
+      R1
+      es2. (f16 es d c
+      bes4) r r2 |
+      R1
+    }
+  >>
+
+
 }
 
 \score {
