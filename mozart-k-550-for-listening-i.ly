@@ -137,7 +137,7 @@ main = \relative c'' {
       \key g \minor
       R1
       es'2. \p ^\markup \italic "woodwinds" (f16 es d c
-      bes4) s s2 |
+      bes4) r r2 |
       R1 * 4
 
       bes8 ^\markup \italic "woodwinds" (a c bes d c es d) |
@@ -145,6 +145,10 @@ main = \relative c'' {
       es) r r2 |
       r4 bes-. bes (c) |
       d4. (es8) c4-. r |
+      g'2. (fis4 |
+      f e es d) |
+      r4 ^\markup \italic "flute" g2 (aes4) |
+      \repeat unfold 3 { r4 g2 (aes4) }
     }
     {
       f2. \p ^\markup \italic "strings" (e4
@@ -152,16 +156,31 @@ main = \relative c'' {
       r4 bes-. bes (c) |
       d4. (es8) c4-. r |
       g'2. (fis4 |
-      f! e es d) \noBreak |
+      f! e es d) |
       c (es2 a,4) |
       bes4 r r2 |
       R1
       es2. (f16 es d c
       bes4) r r2 |
       R1
+      g2. (fis4 |
+      f e es d) |
+      \repeat unfold 4 { des2. (c4) }
     }
   >>
 
+  % measure 61
+  des8 des' des des \crescTextCresc des \< des des des |
+  des des' des des des des des des |
+  d!1 \f
+  a2.. \trill (g16 a) |
+  bes4 d,,8 \sf d d d es es |
+  e e f f fis fis g g |
+  aes4 r8. aes16 g4 r8. g16 |
+  es'4 r8. es16 d4 r8. d16 |
+  g2 ~ g8 f-. \p es-. d-. |
+  c-. bes-. a-. g-. f-. es-. d-. c-. |
+  bes4 r
 
 }
 
