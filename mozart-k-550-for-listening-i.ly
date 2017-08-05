@@ -1,10 +1,12 @@
 \version "2.18.2"
 
+\include "functions.ily"
+
 \header {
   tagline = ##f
 }
 
-#(set! paper-alist (cons '("my size" . (cons (* 8.5 in) (* 2.0 in))) paper-alist))
+#(set! paper-alist (cons '("my size" . (cons (* 8.5 in) (* 2.5 in))) paper-alist))
 
 \paper {
   #(set-paper-size "my size" )
@@ -16,7 +18,7 @@
   indent = 0 \in
   \context {
     \Score
-    \remove "Bar_number_engraver"
+    %\remove "Bar_number_engraver"
   }
 }
 
@@ -73,7 +75,7 @@ main = \relative c'' {
       \clef "treble"
 
       r4 fis \p ^\markup \italic "woodwinds" (g a
-        bes c8 bes a4 g fis) r cis'2 \f
+      bes c8 bes a4 g fis) r cis'2 \f
       (d4) r cis2
       (d4) r cis2
       (d4) cis-! d-! cis-! |
@@ -179,8 +181,78 @@ main = \relative c'' {
   aes4 r8. aes16 g4 r8. g16 |
   es'4 r8. es16 d4 r8. d16 |
   g2 ~ g8 f-. \p es-. d-. |
-  c-. bes-. a-. g-. f-. es-. d-. c-. |
-  bes4 r
+  c-. bes-. a-. g-. f-. es-. d-. c-. \break |
+
+
+  <<
+    {
+      bes4 r <<
+        \colorVoice #magenta {
+          \shiftTextScriptHorizontal #2.0
+          bes''2 ^\p ^\markup \italic "violins" ~ bes2 (a)
+          \override Rest #'color = #black
+          b,2\rest bes'2 ~ bes (a)
+        } \\
+        \colorVoice #blue {
+          r4
+          \shiftTextScriptHorizontal #2.0
+          g8 _\markup \italic "clarinet" \p (f) f4-. g8 (f) f4-. s |
+          s2 r4 g8 (f) f4-. g8 (f) f4-. s
+        }
+      >>
+      r2 r4 es'8 \f (d) \break |
+    }
+    \new Staff \with {
+      \remove Time_signature_engraver
+    }
+    {
+      \clef bass
+      \key g \minor
+      s1 |
+      r2  <<
+        \colorVoice #blue {
+          r4
+          \shiftTextScriptHorizontal #2.0
+          g,,8 ^\p ^\markup \italic "bassoon" (f) f4-. g8 (f) f4-. s
+          s2 r4 g8 (f) f4-. g8 (f) f4-. s
+        } \\
+        \colorVoice #magenta {
+          \shiftTextScriptHorizontal #2.0
+          es,2 \p _\markup \italic { violas & cellos } ~
+          es (d4) \override Rest #'color = #black d\rest |
+          d2\rest es ~
+          es (d4) d\rest |
+        }
+      >>
+    }
+  >>
+
+  %measure 77
+  d'''4 es8 (d) d4 es8 (d) |
+  d2 es4. (c8) |
+  bes4. (d8) c4. (a8) |
+  bes4 r r2
+
+  <<
+
+
+    \colorVoice #magenta {
+
+      \override Rest #'color = #black
+      bes,2\rest
+      \shiftTextScriptHorizontal #2.0
+      es'2 ^\p ^\markup \italic "violins"
+      ~ es (d4) bes,\rest
+    } \\
+    \colorVoice #blue {
+      s2 r4
+      \shiftTextScriptHorizontal #2.0
+      g'8 _\p _\markup \italic "clarinet" (f)
+      f4-. g8 (f) f4-. s4
+    }
+
+
+  >>
 
 }
 
