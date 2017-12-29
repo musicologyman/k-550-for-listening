@@ -123,11 +123,12 @@ main = \relative c'' {
   des2 e,4-! g-! |
   f2 c'8 a c a |
   des bes des bes e, g e g |
-  f4 r f, r \break |
+  f4 r f, r \break|
 
   %measure 43
   \once \override MultiMeasureRestNumber #'text = #"1"
-  R1 * 1
+  R1 * 1 ^\markup \italic "\"medial caesura\""
+
 
   <<
     \new Staff \with {
@@ -135,13 +136,16 @@ main = \relative c'' {
       alignAboveContext = #"main"
     }
     {
-
       \key g \minor
-      R1
-      es'2. \p ^\markup \italic "woodwinds" (f16 es d c
+      \shiftTextScriptHorizontal #-3.0
+      R1 ^\markup \huge \bold { S - theme }
+      \shiftTextScriptHorizontal #2.0
+      es'2. \p _\markup \italic "woodwinds" (f16 es d c
       bes4) r r2 |
-      R1 * 4
+      R1 * 3
 
+
+      R1
       bes8 ^\markup \italic "woodwinds" (a c bes d c es d) |
       f2. (e4
       es) r r2 |
@@ -153,12 +157,12 @@ main = \relative c'' {
       \repeat unfold 3 { r4 g2 (aes4) }
     }
     {
-      f2. \p ^\markup \italic "strings" (e4
+      f2. \p _\markup \italic { violins } (e4
       es!4) r4 r2 |
       r4 bes-. bes (c) |
       d4. (es8) c4-. r |
       g'2. (fis4 |
-      f! e es d) |
+      f! e es d) \break |
       c (es2 a,4) |
       bes4 r r2 |
       R1
@@ -176,7 +180,7 @@ main = \relative c'' {
   des des' des des des des des des |
   d!1 \f
   a2.. \trill (g16 a) |
-  bes4 d,,8 \sf d d d es es |
+  bes4 d,,8 \sf ^\markup \bold \huge { Closing section } d d d es es |
   e e f f fis fis g g |
   aes4 r8. aes16 g4 r8. g16 |
   es'4 r8. es16 d4 r8. d16 |
@@ -190,7 +194,7 @@ main = \relative c'' {
         \colorVoice #magenta {
           \shiftTextScriptHorizontal #2.0
           bes''2 ^\p ^\markup \italic "violins" ~ bes2 (a)
-          \override Rest #'color = #black
+          \blackRest
           b,2\rest bes'2 ~ bes (a)
         } \\
         \colorVoice #blue {
@@ -219,7 +223,7 @@ main = \relative c'' {
         \colorVoice #magenta {
           \shiftTextScriptHorizontal #2.0
           es,2 \p _\markup \italic { violas & cellos } ~
-          es (d4) \override Rest #'color = #black d\rest |
+          es (d4) \blackRest d4\rest |
           d2\rest es ~
           es (d4) d\rest |
         }
@@ -231,29 +235,152 @@ main = \relative c'' {
   d'''4 es8 (d) d4 es8 (d) |
   d2 es4. (c8) |
   bes4. (d8) c4. (a8) |
-  bes4 r r2
+  bes4 r
 
   <<
+    {
+      r2
+      <<
+        \colorVoice #magenta {
 
+          \override Rest #'color = #black
+          bes,2\rest
+          \shiftTextScriptHorizontal #2.0
+          es'2 ^\p ^\markup \italic "violins"
+          ~ es (d4) bes,\rest
+          bes2\rest
+          \voiceTwo
+          es2 ~ _\markup \italic "violins"
+          es2 (d4)
+          \stemDown
+          \slurUp
+          \revert NoteHead.color
+          \revert Stem.color
+          \revert Slur.color
+          \revert Beam.color
+          \revert DynamicText.color
+          es'8 \f ^\markup \italic "violins" (d)
+        } \\
+        \colorVoice #blue {
+          s2 r4
+          \shiftTextScriptHorizontal #2.0
+          g,8 _\p _\markup \italic "clarinet" (f)
+          f4-. g8 (f) f4-. s4
+          \voiceOne
+          s2 s4 g8 ^\markup \italic "clarinet" (f)
+          f4-. g8 (f) f4-. s
+        }
+      >>
 
-    \colorVoice #magenta {
-
-      \override Rest #'color = #black
-      bes,2\rest
-      \shiftTextScriptHorizontal #2.0
-      es'2 ^\p ^\markup \italic "violins"
-      ~ es (d4) bes,\rest
-    } \\
-    \colorVoice #blue {
-      s2 r4
-      \shiftTextScriptHorizontal #2.0
-      g'8 _\p _\markup \italic "clarinet" (f)
-      f4-. g8 (f) f4-. s4
     }
+    \new Staff
+    \with { \remove Time_signature_engraver }
+    {
+      \key g \minor
+      <<
+        \colorVoice #blue {
+          \voiceTwo
+          r4
+          \shiftTextScriptHorizontal #2.0
+            g,8 _\p _\markup \italic "bassoon" (f)
+          f4-. g8 (f) f4-. s |
+          \voiceOne
+          s2 r4
+            g8 ^\markup \italic "bassoon" (f) |
+          f4-. g8 (f) f4-. s |
 
-
+        } \\
+        \colorVoice #magenta {
+          \voiceOne
+          \shiftTextScriptHorizontal #2.0
+          bes2 ^\p ^\markup \italic "violas & cellos"  ~
+          \blackRest
+          bes (a4) bes\rest
+          \voiceTwo
+          bes2\rest
+          bes, _\markup \italic "violas & cellos" ~
+          bes (a4) bes'\rest
+        }
+      >>
+      \stopStaff
+      s1
+    }
   >>
+  d'4 es8 (d) d4 es8 (d) |
+  d2 es4. (c8) |
+  bes4. (d8) c4. (a8) |
+  bes f d' c bes a g f |
+  e d c bes a g f es |
+  d4 f' g a, |
+  bes8 f d' c bes a g f |
+  es d c bes a c f es |
+  d4 f' g a |
+  bes g f a, |
 
+  % measure 95
+  bes8 (d) f-. bes-. \repeat unfold 2 { a (f) c'-. a-. |
+  bes-. f-. d'-. bes-. } a (f) c'-. a-. |
+  \repeat unfold 2 { bes (d) c-. a-. } |
+  bes4 r r2 |
+  fis4 r r2 \endRepeat \break
+
+  %measure 101
+  g4 r gis r |
+  <<
+    { d'1 ^\markup \italic woodwinds \p
+      (cis2 b a gis)
+      fis4 s }
+    \\
+    { s1
+      s2 s4 d8 _\markup \italic violins \p (cis)
+      cis4-. d8 (cis) cis4-. d8 (cis)
+      cis4 (a') }
+  >>
+    r4 a8 ^\markup \italic "(violins)" (gis) |
+  fis4-. fis8 (e) d4-. d8 (cis) |
+
+  %measure 107
+  bis4 bis r cis8 (b) |
+  b4-. cis8 (b) b4-. cis8 (b) |
+  b4 (gis') r gis8 (fis8)
+  eis4 eis8 (d8) cis4 cis8 (b8)
+  ais4 ais4 r4 b8 (a!8) |
+  a4 b8 (a8) a4 b8 (a8) |
+  a4 (fis'4) r4 fis8 (e8) |
+
+  %measure 114
+  <<
+  {
+    dis4 dis8 (cis8) b!-. \f d-. fis-. a,-. |
+  g-. b-. e-. g,-. fis-. a-. dis-. fis,-. |
+  g-. b-. cis-. dis-. e-. b-. e-. fis-. |
+  g-. e!-. fis-. gis-. a-. e-. a-. b-. |
+  c4-. a,-. r bes'8 (a) |
+  a4 bes8 (a) bes8 (a) a4 |
+  a (f') r f8 (e) |
+  d4 d8 (c) bes!4 bes8 (a) |
+  
+  }
+  \new Staff \with {
+      \remove Time_signature_engraver
+  }
+    {
+      \clef treble
+      \key g \minor
+      s2 s4
+         \shiftTextScriptHorizontal #-12.0
+          c,,8 \f ^\markup \italic { violas and cellos} (b) |
+      b4 c8 (b) b4 c8 (b) |
+      b4 (g'4)  r g8 (fis) |
+      e4 e8 (d) c4 c8 (b) |
+      \clef bass
+      a8-. b-. c-. b-. a-. bes-. g-. a-. |
+      f-. a-. d-. f,-. e-. g-. cis-. e,-. |
+      d-. a'-. b-. cis-. d-. a-. d-. e-. |
+      \clef treble
+      f-. d-. e-. fis-. g-. d-. g-. a-.
+    }
+  >>
 }
 
 \score {
