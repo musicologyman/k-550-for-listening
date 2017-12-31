@@ -282,11 +282,11 @@ main = \relative c'' {
           \voiceTwo
           r4
           \shiftTextScriptHorizontal #2.0
-            g,8 _\p _\markup \italic "bassoon" (f)
+          g,8 _\p _\markup \italic "bassoon" (f)
           f4-. g8 (f) f4-. s |
           \voiceOne
           s2 r4
-            g8 ^\markup \italic "bassoon" (f) |
+          g8 ^\markup \italic "bassoon" (f) |
           f4-. g8 (f) f4-. s |
 
         } \\
@@ -318,8 +318,10 @@ main = \relative c'' {
   bes g f a, |
 
   % measure 95
-  bes8 (d) f-. bes-. \repeat unfold 2 { a (f) c'-. a-. |
-  bes-. f-. d'-. bes-. } a (f) c'-. a-. |
+  bes8 (d) f-. bes-. \repeat unfold 2 {
+    a (f) c'-. a-. |
+    bes-. f-. d'-. bes-.
+  } a (f) c'-. a-. |
   \repeat unfold 2 { bes (d) c-. a-. } |
   bes4 r r2 |
   fis4 r r2 \endRepeat \break
@@ -327,16 +329,20 @@ main = \relative c'' {
   %measure 101
   g4 r gis r |
   <<
-    { d'1 ^\markup \italic woodwinds \p
+    {
+      d'1 ^\markup \italic woodwinds \p
       (cis2 b a gis)
-      fis4 s }
+      fis4 s
+    }
     \\
-    { s1
+    {
+      s1
       s2 s4 d8 _\markup \italic violins \p (cis)
       cis4-. d8 (cis) cis4-. d8 (cis)
-      cis4 (a') }
+      cis4 (a')
+    }
   >>
-    r4 a8 ^\markup \italic "(violins)" (gis) |
+  r4 a8 ^\markup \italic "(violins)" (gis) |
   fis4-. fis8 (e) d4-. d8 (cis) |
 
   %measure 107
@@ -350,26 +356,35 @@ main = \relative c'' {
 
   %measure 114
   <<
-  {
-    dis4 dis8 (cis8) b!-. \f d-. fis-. a,-. |
-  g-. b-. e-. g,-. fis-. a-. dis-. fis,-. |
-  g-. b-. cis-. dis-. e-. b-. e-. fis-. |
-  g-. e!-. fis-. gis-. a-. e-. a-. b-. |
-  c4-. a,-. r bes'8 (a) |
-  a4 bes8 (a) bes8 (a) a4 |
-  a (f') r f8 (e) |
-  d4 d8 (c) bes!4 bes8 (a) |
-  
-  }
-  \new Staff \with {
+    {
+      dis4 dis8 (cis8) b!-. \f d-. fis-. a,-. |
+      g-. b-. e-. g,-. fis-. a-. dis-. fis,-. |
+      g-. b-. cis-. dis-. e-. b-. e-. fis-. |
+      g-. e!-. fis-. gis-. a-. e-. a-. b-. |
+      c4-. a,-. r bes'8 (a) |
+      a4 bes8 (a) bes8 (a) a4 |
+      a (f') r f8 (e) |
+      d4 d8 (c) bes!4 bes8 (a) |
+      g-. d-. bes!-. c-. d-. b-. d-. f,-. |
+      e-. g-. c-. e,-. d-. f-. b-. d,-. |
+
+      e g a b c g c d |
+      e c d e f c f g |
+      a4 f, r g'8 (f) |
+      f4 g8 (f) f4 g8 (f) |
+
+
+    }
+    \new Staff \with {
       \remove Time_signature_engraver
-  }
+    }
     {
       \clef treble
       \key g \minor
+
       s2 s4
-         \shiftTextScriptHorizontal #-12.0
-          c,,8 \f ^\markup \italic { violas and cellos} (b) |
+      \shiftTextScriptHorizontal #-12.0
+      c,8 \f ^\markup \italic { violas and cellos} (b) |
       b4 c8 (b) b4 c8 (b) |
       b4 (g'4)  r g8 (fis) |
       e4 e8 (d) c4 c8 (b) |
@@ -378,7 +393,67 @@ main = \relative c'' {
       f-. a-. d-. f,-. e-. g-. cis-. e,-. |
       d-. a'-. b-. cis-. d-. a-. d-. e-. |
       \clef treble
-      f-. d-. e-. fis-. g-. d-. g-. a-.
+      f-. d-. e-. fis-. g-. d-. g-. a-. |
+      bes4 \clef bass g, r a8 (g) |
+      g4 a8 (g) g4 a8 (g) |
+      g4 (e') r e8 (d) |
+      c4 c8 (bes!) a4 a8 (g) |
+      f-. g-. a-. g-. f-. g-. es-. f-. |
+      \stopStaff
+      \once \override TextScript.Y-offset = #0.0
+      \once \override TextScript.X-offset = #1.0
+      s1 ^\markup \italic "etc."
+    }
+  >>
+
+  f''4 (d') r d8 (c) |
+  bes4 bes8 (a) g4 g8 (f) |
+  e4 (c') r c8 (bes) |
+  a4 a8 (g) fis4 fis8 (e) |
+  d4 (bes') r bes8 (a) |
+  g4 g8 (f!) e4 e8 (d) |
+  cis4 (a') \repeat unfold 2 { r bes8 (a) |
+                               a4 bes8 (a) a4 bes8 (a) |
+                               a4-! a-! } r4 bes8 \p (a) |
+
+  % measure 139
+  <<
+    \new Staff \with {
+      \remove Time_signature_engraver
+    }
+    { \clef treble
+      \key g \minor
+      r2 r4 f8 \p  ^\markup \italic "flute" (es!) |
+      es4 f8 (es) es4 es |
+      r2 r4 ges8 (f) |
+      f4 ges8 (f) f4 f |
+      r2 r4 ges8 (f) |
+      f4 ges8 (f) f4 f |
+      r2 r4 aes8 (g) |
+      g4 aes8 (g) g4 g |
+      R1 |
+      r4 b8 (c) c4 r |
+      R1 |
+      r4 es8 (d) d4 r |
+      R1
+      r4 g8 (fis) fis4 r |
+    }
+
+    { a,4 bes8 (a) a4 bes8 (a) |
+      a4 a r c8 (bes) |
+      c4 c8 (bes) bes4 c8 (bes) |
+      bes4 bes r c8 (b) |
+      c4 c8 (b) b4 c8 (b) |
+      b4 b r d8 (c) |
+      d4 d8 (c) c4 d8 (c) |
+      c4 c r bes8 (a) |
+      bes4 bes8 (a) a4 bes8 (a) |
+      a4 a r g8 (fis) |
+      g4 g8 (fis) fis4 g8 (fis) |
+      fis4 fis r es8 (d) |
+      es4 es8 (d) d4 es8 (d) |
+      d4 d r
+
     }
   >>
 }
